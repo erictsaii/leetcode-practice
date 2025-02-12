@@ -2,13 +2,17 @@ class Solution {
     public:
         int maximumSum(vector<int>& nums) {
             vector<vector<int>> m(82);
-            string s;
+            int tmp;
             int cnt, ans = -1, to_be_replace;
     
             for (int i = 0; i < nums.size(); i++) {
                 cnt = 0;
-                s = to_string(nums[i]);
-                for (auto &c : s) cnt += c - '0';
+                tmp = nums[i];
+                while(tmp != 0) {
+                    cnt += tmp % 10;
+                    tmp /= 10;
+                }
+    
                 if (m[cnt].size() <= 1) m[cnt].push_back(nums[i]);
                 else {
                     to_be_replace = (m[cnt][0] < m[cnt][1]) ? 0 : 1;
