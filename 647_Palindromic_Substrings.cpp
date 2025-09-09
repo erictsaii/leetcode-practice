@@ -1,23 +1,21 @@
 class Solution {
 public:
-    string find_longest_palindrome(int l, int r, string& s) {
-        while (l>=0 && r<=s.size()-1) {
-            if (s[l] != s[r]) break;
-            l--;
-            r++;
+    int count_palindrome(int left, int right, string& s) {
+        int cnt = 0;
+        while (left >= 0 && right < s.size()) {
+            if (s[left] != s[right]) break;
+            cnt++;
+            left--;
+            right++;
         }
-
-        return s.substr(l+1, r-1-l);
+        return cnt;
     }
-    string longestPalindrome(string s) {
-        int n = s.size();
-        string ans = "";
-        for (int i = 0; i < n; i++) {
-            string odd = find_longest_palindrome(i, i, s);
-            string even = find_longest_palindrome(i, i+1, s);
 
-            if (odd.size() > ans.size()) ans = odd;
-            if (even.size() > ans.size()) ans = even;
+    int countSubstrings(string s) {
+        int n = s.size();
+        int ans = 0;
+        for (int i = 0; i < n; i++) {
+            ans += count_palindrome(i, i, s) + count_palindrome(i, i+1, s);
         }
         return ans;
     }
