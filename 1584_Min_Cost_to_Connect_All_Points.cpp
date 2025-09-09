@@ -13,12 +13,14 @@ public:
         int root2 = find(b);
         if (root1 == root2) return;
         else if (depth[root1] > depth[root2]) {
-            depth[root1]++;
             parent[root2] = root1;
         }
-        else {
-            depth[root2]++;
+        else if (depth[root1] < depth[root2]){
             parent[root1] = root2;
+        }
+        else {
+            depth[root1]++;
+            parent[root2] = root1;
         }
     }
 
