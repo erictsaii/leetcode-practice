@@ -27,5 +27,5 @@ public:
 };
 
 
-// divide and conquer
+// divide and conquer with memo
 // instead of choosing ith balloon to burst first, we choose ith balloon to burst last
